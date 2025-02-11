@@ -1,0 +1,46 @@
+# Ignore cache, temporary files, and build artifacts
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+[Mm]emoryCaptures/
+CrashReports/
+
+# Ignore Unity-generated metadata files
+[Aa]ssets/**/*.meta
+
+# Ignore local project settings (optional, tapi bisa di-commit jika ingin berbagi pengaturan)
+# ProjectSettings/EditorBuildSettings.asset
+# ProjectSettings/ProjectSettings.asset
+# ProjectSettings/QualitySettings.asset
+# ProjectSettings/TagManager.asset
+# ProjectSettings/TimeManager.asset
+# ProjectSettings/InputManager.asset
+
+# Ignore Visual Studio / JetBrains Rider files
+.vs/
+*.sln
+*.csproj
+*.unityproj
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+
+# Ignore files related to Unity Collaborate
+.collab/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore package manager cache
+Packages/manifest.json.meta
+Packages/packages-lock.json
