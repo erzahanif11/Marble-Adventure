@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
 
-    float xInput;
-    float zInput;
+    //float xInput;
+    //float zInput;
+    public Transform cameraTransform;
     public float moveSpeed;
+    private Vector3 moveDirection;
     int coinsCollected;
     public void Awake()
     {
@@ -22,8 +24,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xInput = Input.GetAxis("Horizontal");
-        zInput = Input.GetAxis("Vertical");
+        float xInput = Input.GetAxis("Horizontal");
+        float zInput = Input.GetAxis("Vertical");
+
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        moveDirection = (forward * zInput + right * xInput).normalized;
 
         if (transform.position.y <= -3f)
         {
@@ -32,10 +43,16 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float xVelocity = xInput * moveSpeed;
-        float zVelocity = zInput * moveSpeed;
+        rb.linearVelocity = new Vector3(moveDirection.x * moveSpeed, rb.linearVelocity.y, moveDirection.z * moveSpeed);
 
-        rb.linearVelocity = new Vector3(xVelocity, rb.linearVelocity.y,  zVelocity);
+        if (moveDirection.magnitude > 0)
+        {
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+        }
+        //float xVelocity = xInput * moveSpeed;
+        //float zVelocity = zInput * moveSpeed;
+
+        //rb.linearVelocity = new Vector3(xVelocity, rb.linearVelocity.y,  zVelocity);
     }
     private void OnTriggerEnter(Collider other)
     {
